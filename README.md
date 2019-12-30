@@ -1,8 +1,8 @@
-##简介
+## 简介
 
 一个可以抓取固定url模式的下载器
 
-##使用条件
+## 使用条件
 
 * php >= 5.6.0
 * unix操作系统
@@ -20,7 +20,7 @@
     composer require pengyu/file-catcher
 ```
 
-##使用
+## 使用
 
 ```
 $client=new FileCatcher\Master();
