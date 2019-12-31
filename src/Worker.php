@@ -6,9 +6,9 @@
  * Time: 16:11
  */
 
-namespace FileCatcher;
+namespace Pengyu\FileCatcher;
 
-use FileCatcher\Downloader\AbstractDownloader;
+use Pengyu\FileCatcher\Downloader\AbstractDownloader;
 
 class Worker
 {

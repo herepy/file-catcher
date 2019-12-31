@@ -23,7 +23,7 @@
 ## 使用
 
 ```
-$client=new FileCatcher\Master();
+$client=new Pengyu\FileCatcher\Master();
 //url前缀
 $urlPrefix="http://abc.com/path/";
 //文件保存目录

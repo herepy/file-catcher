@@ -6,7 +6,7 @@
  * Time: 15:35
  */
 
-namespace FileCatcher\Downloader;
+namespace Pengyu\FileCatcher\Downloader;
 
 abstract class AbstractDownloader
 {

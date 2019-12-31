@@ -8,7 +8,7 @@
 
 require_once "vendor/autoload.php";
 
-$client=new FileCatcher\Master();
+$client=new Pengyu\FileCatcher\Master();
 $client->init("http://tiles.pano.vizen.cn/6E3912F598C4456583B68263BD4A267F/cube/","/vagrant/img");
 $option=[
     "x" =>  [
