@@ -63,7 +63,7 @@ class Master
     /**
      * 每个工作进程分配的任务数
      */
-    const countPerWorker=250;
+    protected $countPerWorker=200;
 
 
     /**
@@ -71,6 +71,7 @@ class Master
      * @param $urlPrefix
      * @param $savePath
      * @param $downloader
+     * @return $this
      */
     public function init($urlPrefix,$savePath,$downloader=null)
     {
@@ -86,17 +87,31 @@ class Master
             $this->downloader=new Downloader\Downloader();
         }
         $this->downloader->setSaveDir($this->savePath);
+        return $this;
     }
 
     /**
      * 设置命名参数
      * @param $model {{x}}_{{y}}_{{z}}.jpg
      * @param $option ["x"=>["type"=>"exact","value"=>[0,10]],"y"=>["type"=>"range","value"=>[0,15]],"z"=>["type"=>"in","value"=>[0,3,6]]]
+     * @return $this
      */
     public function setNameModel($model,$option)
     {
         $this->nameModel=$model;
         $this->option=$option;
+        return $this;
+    }
+
+    /**
+     * 设置工作进程分配的最大任务数
+     * @param $count
+     * @return $this
+     */
+    public function setWorkerTaskCount($count)
+    {
+        $this->countPerWorker=$count;
+        return $this;
     }
 
     /**
@@ -189,7 +204,7 @@ class Master
      */
     private function makeWorker()
     {
-        $taskList=array_chunk($this->fileNames,self::countPerWorker);
+        $taskList=array_chunk($this->fileNames,$this->countPerWorker);
         echo "now is running ".count($taskList)." workers to download file...".PHP_EOL;
         foreach ($taskList as $task) {
             $pid=pcntl_fork();
