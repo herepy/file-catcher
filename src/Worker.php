@@ -69,9 +69,15 @@ class Worker
     public function run()
     {
         foreach ($this->fileNames as $name) {
+            if (strpos($name,"/") !== false) {
+                $fileName=explode("/",$name);
+                $fileName=end($fileName);
+            } else {
+                $fileName=$name;
+            }
             $url=$this->urlPrefix.$name;
-            if(!$this->download($name,$url)) {
-                $this->failUrls[$name]=$url;
+            if(!$this->download($fileName,$url)) {
+                $this->failUrls[$fileName]=$url;
                 continue;
             }
             $this->count++;
