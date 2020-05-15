@@ -131,7 +131,8 @@ class Master
         }
 
         foreach ($this->option as $key => $item) {
-            $this->valueBox[$key]=$this->initValue($item["type"],$item["value"]);
+            $option=isset($item["option"]) ? $item["option"] : null;
+            $this->valueBox[$key]=$this->initValue($item["type"],$item["value"],$option);
         }
     }
 
@@ -139,10 +140,11 @@ class Master
      * 生成并获取命名参数的所有值
      * @param $type
      * @param $value
+     * @param $option
      * @return mixed
      * @throws Exception
      */
-    private function initValue($type,$value)
+    private function initValue($type,$value,$option)
     {
         switch ($type) {
             case "exact":
@@ -150,6 +152,11 @@ class Master
             case "in":
                 return $value;
             case "range":
+                if ($option !== null) {
+                    return array_map(function($value) use ($option){
+                        return str_pad($value,$option["width"],$option["placeholder"],STR_PAD_LEFT);
+                    },range($value[0],$value[1]));
+                }
                 return range($value[0],$value[1]);
             default:
                 throw new Exception("incorrect type:".$type);
