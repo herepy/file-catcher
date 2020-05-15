@@ -17,11 +17,19 @@ $option=[
     ],
     "y" =>  [
         "type"  =>  "range",
-        "value" =>  [0,15]
+        "value" =>  [0,5],
+        "option"=>  [
+            "width"         =>  2,    //值的位数
+            "placeholder"   =>  "0"   //不够位数补位占位符
+        ]
     ],
     "z" =>  [
         "type"  =>  "range",
-        "value" =>  [0,95]
+        "value" =>  [0,10],
+        "option"=>  [
+            "width"         =>  2,
+            "placeholder"   =>  "0"
+        ]
     ],
 ];
 $client->setNameModel("{{x}}_{{y}}_{{z}}.jpg",$option);
