@@ -70,8 +70,9 @@ class Worker
     {
         foreach ($this->fileNames as $name) {
             if (strpos($name,"/") !== false) {
-                $fileName=explode("/",$name);
-                $fileName=end($fileName);
+//                $fileName=explode("/",$name);
+//                $fileName=end($fileName);
+                $fileName=str_replace("/","_",$name);
             } else {
                 $fileName=$name;
             }
