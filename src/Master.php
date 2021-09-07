@@ -172,7 +172,7 @@ class Master
         switch (count($this->valueBox)) {
             case 1:
                 $pattern="/\{\{".$nameList[0]."\}\}/";
-                foreach ($this->valueBox[0] as $value) {
+                foreach ($this->valueBox[$nameList[0]] as $value) {
                     $fileName=preg_replace($pattern,$value,$this->nameModel);
                     $this->fileNames[]=$fileName;
                 }
